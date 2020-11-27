@@ -9,10 +9,13 @@ namespace AddressBookLinq
         {
             Console.WriteLine("Welcome to Address Book Table");
             AddressBookManagement addressBook = new AddressBookManagement();
-            addressBook.AddDataToDataTable();
-            addressBook.ViewContact();
-            addressBook.UpdateContactDetail();
-            addressBook.ViewContact();
+
+            DataTable table = new DataTable();
+
+            addressBook.AddDataToDataTable(table);
+            addressBook.ViewContact(table);
+            DataTable NewTable =  addressBook.DeleteContact(table);
+            addressBook.ViewContact(NewTable);
         }
     }
 }
