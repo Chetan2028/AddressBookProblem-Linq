@@ -14,7 +14,7 @@ namespace AddressBookLinq
 
             addressBook.AddDataToDataTable(table);
             addressBook.ViewContact(table);
-            addressBook.GetCountByCityAndState(table);
+            addressBook.GetSortedDataBasedOnPersonName(table);
         }
     }
 }
