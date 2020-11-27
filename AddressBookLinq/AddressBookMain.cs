@@ -13,7 +13,8 @@ namespace AddressBookLinq
             DataTable table = new DataTable();
 
             addressBook.AddDataToDataTable(table);
-            addressBook.RetrievingContactDetailsByStateOrCity(table);
+            addressBook.ViewContact(table);
+            addressBook.GetCountByCityAndState(table);
         }
     }
 }
