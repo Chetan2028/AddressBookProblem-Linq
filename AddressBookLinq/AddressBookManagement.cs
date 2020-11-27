@@ -87,5 +87,25 @@ namespace AddressBookLinq
 
             return dataTableupdated;
         }
+
+        public void RetrievingContactDetailsByStateOrCity(DataTable dataTable)
+        {
+            //lambda syntax for getting data for particular city
+            var recordData = dataTable.AsEnumerable().Where(r => r.Field<string>("city") == "Belgaum");
+            //lambda syntax for getting data for particular state
+            var recordDataState = dataTable.AsEnumerable().Where(r => r.Field<string>("state") == "Karnataka");
+            foreach (var data in recordDataState)
+            {
+                Console.WriteLine("FirstName:- " + data.Field<string>("firstName"));
+                Console.WriteLine("lastName:- " + data.Field<string>("lastName"));
+                Console.WriteLine("Address:- " + data.Field<string>("address"));
+                Console.WriteLine("City:- " + data.Field<string>("city"));
+                Console.WriteLine("State:- " + data.Field<string>("state"));
+                Console.WriteLine("zip:- " + data.Field<int>("zip"));
+                Console.WriteLine("phoneNumber:- " + data.Field<string>("phoneNumber"));
+                Console.WriteLine("eMail:- " + data.Field<string>("email"));
+                Console.WriteLine("***************");
+            }
+        }
     }
 }
