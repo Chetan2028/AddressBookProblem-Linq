@@ -142,5 +142,27 @@ namespace AddressBookLinq
 
             }
         }
+
+        /// <summary>
+        /// UC8
+        /// Gets the name of the sorted data based on person.
+        /// </summary>
+        /// <param name="datatable">The datatable.</param>
+        public void GetSortedDataBasedOnPersonName(DataTable datatable)
+        {
+            var recordData = datatable.AsEnumerable().OrderBy(r => r.Field<string>("firstName")).ThenBy(r => r.Field<string>("lastName"));
+            foreach (var data in recordData)
+            {
+                Console.WriteLine("FirstName:- " + data.Field<string>("firstName"));
+                Console.WriteLine("lastName:- " + data.Field<string>("lastName"));
+                Console.WriteLine("Address:- " + data.Field<string>("address"));
+                Console.WriteLine("City:- " + data.Field<string>("city"));
+                Console.WriteLine("State:- " + data.Field<string>("state"));
+                Console.WriteLine("zip:- " + data.Field<int>("zip"));
+                Console.WriteLine("phoneNumber:- " + data.Field<string>("phoneNumber"));
+                Console.WriteLine("eMail:- " + data.Field<string>("email"));
+                Console.WriteLine("***************");
+            }
+        }
     }
 }
