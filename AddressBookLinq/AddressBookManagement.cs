@@ -8,14 +8,11 @@ namespace AddressBookLinq
 {
     public class AddressBookManagement
     {
-        //UC1 - Create a Data Table
-        DataTable table = new DataTable();
-
         /// <summary>
         /// UC2 and UC3
         /// Adds the data to data table.
         /// </summary>
-        public void AddDataToDataTable()
+        public void AddDataToDataTable(DataTable table)
         {
             table.Columns.Add("firstName", typeof(string));
             table.Columns.Add("lastName", typeof(string));
@@ -38,7 +35,7 @@ namespace AddressBookLinq
         /// UC4
         /// Updates the contact detail.
         /// </summary>
-        public void UpdateContactDetail()
+        public void UpdateContactDetail(DataTable table)
         {
             var recordData = table.AsEnumerable().Where(x => x.Field<string>("firstName").Equals("Abhilash") && x.Field<string>("phoneNumber").Equals("9632145875")).FirstOrDefault();
             recordData["state"] = "Chennai";
@@ -58,7 +55,7 @@ namespace AddressBookLinq
         /// <summary>
         /// Views the contact.
         /// </summary>
-        public void ViewContact()
+        public void ViewContact(DataTable table)
         {
             foreach (var contact in table.AsEnumerable())
             {
@@ -71,6 +68,24 @@ namespace AddressBookLinq
                     "  Phone Number : " + contact.Field<string>("phoneNumber")+
                     "  Email : " + contact.Field<string>("email"));
             }
+        }
+
+        /// <summary>
+        /// UC5
+        /// Deletes the contact.
+        /// </summary>
+        /// <param name="table">The table.</param>
+        /// <returns></returns>
+        public DataTable DeleteContact(DataTable table)
+        {
+            //getting all the data except the data to be deleted
+            //saving them in new data table by copytodatatable method
+            //returning the new data table
+            //Using Linq u can just query , to delete i am copying into a new datatable
+            DataTable dataTableupdated = table.AsEnumerable().Except(table.AsEnumerable().
+                Where(r => r.Field<string>("firstName") == "Abhilash" && r.Field<string>("phoneNumber") == "9632145875")).CopyToDataTable();
+
+            return dataTableupdated;
         }
     }
 }
