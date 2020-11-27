@@ -25,8 +25,8 @@ namespace AddressBookLinq
             table.Columns.Add("addressBookName", typeof(string));
             table.Columns.Add("type", typeof(string));
 
-            table.Rows.Add("Chetan", "Malagoudar", "Mahantesh Nagar", "Belgaum", "Karnataka", 590016, "8951604950", "bmchetan2028@gmail.com","College","Friend");
-            table.Rows.Add("Pranav", "Mare", "Chinchwad", "Pune", "Maharastra", 568916, "7412589635", "pranavmare@gmail.com","School","Family");
+            table.Rows.Add("Chetan", "Malagoudar", "Mahantesh Nagar", "Belgaum", "Karnataka", 590016, "8951604950", "bmchetan2028@gmail.com", "College", "Friend");
+            table.Rows.Add("Pranav", "Mare", "Chinchwad", "Pune", "Maharastra", 568916, "7412589635", "pranavmare@gmail.com", "School", "Family");
             table.Rows.Add("Ibraheem", "Khaleel", "Near Wayand park", "Wayand", "Kerala", 595716, "9632147857", "ibraheemkhaleel@gmail.com", "College", "Family");
             table.Rows.Add("Shiva", "Reddy", "Ameerpet", "Hyderabad", "Telangana", 597516, "963214785", "shivareddy8@gmail.com", "School", "Friend");
             table.Rows.Add("Abhilash", "Itnal", "Near Chandini Chowk", "Chandini Chowk", "New Delhi", 594316, "9632145875", "abhilashitnal@gmail.com", "College", "Family");
@@ -51,7 +51,7 @@ namespace AddressBookLinq
             Console.WriteLine("Address:- " + recordData.Field<string>("address"));
             Console.WriteLine("City:- " + recordData.Field<string>("city"));
             Console.WriteLine("State:- " + recordData.Field<string>("state"));
-            Console.WriteLine("zip:- " +recordData.Field<int>("zip"));
+            Console.WriteLine("zip:- " + recordData.Field<int>("zip"));
             Console.WriteLine("phoneNumber:- " + recordData.Field<string>("phoneNumber"));
             Console.WriteLine("eMail:- " + recordData.Field<string>("email"));
             Console.WriteLine("***************");
@@ -65,15 +65,15 @@ namespace AddressBookLinq
         {
             foreach (var contact in table.AsEnumerable())
             {
-                Console.WriteLine("First Name : " + contact.Field<string>("firstName") + 
-                    "  LastName : " + contact.Field<string>("lastName")+
-                    "  Address : " + contact.Field<string>("address")+
-                    "  City : " + contact.Field<string>("city")+
-                    "  State : " + contact.Field<string>("state")+
-                    "  Zip : " + contact.Field<int>("zip")+
-                    "  Phone Number : " + contact.Field<string>("phoneNumber")+
-                    "  Email : " + contact.Field<string>("email")+
-                    "  AddressBookName : " + contact.Field<string>("addressBookName") + 
+                Console.WriteLine("First Name : " + contact.Field<string>("firstName") +
+                    "  LastName : " + contact.Field<string>("lastName") +
+                    "  Address : " + contact.Field<string>("address") +
+                    "  City : " + contact.Field<string>("city") +
+                    "  State : " + contact.Field<string>("state") +
+                    "  Zip : " + contact.Field<int>("zip") +
+                    "  Phone Number : " + contact.Field<string>("phoneNumber") +
+                    "  Email : " + contact.Field<string>("email") +
+                    "  AddressBookName : " + contact.Field<string>("addressBookName") +
                     "  Address Book Type : " + contact.Field<string>("type"));
             }
         }
@@ -166,6 +166,22 @@ namespace AddressBookLinq
                 Console.WriteLine("phoneNumber:- " + data.Field<string>("phoneNumber"));
                 Console.WriteLine("eMail:- " + data.Field<string>("email"));
                 Console.WriteLine("***************");
+            }
+        }
+
+        /// <summary>
+        /// UC10
+        /// Gets the type of the count by.
+        /// </summary>
+        /// <param name="table">The table.</param>
+        public void GetCountByType(DataTable table)
+        {
+            var recordData = table.AsEnumerable().GroupBy(x => x.Field<string>("type")).Select(r => new { type = r.Key, typeCount = r.Count() });
+
+            foreach (var item in recordData)
+            {
+                Console.WriteLine("Type : " + item.type);
+                Console.WriteLine("Count : " + item.typeCount);
             }
         }
     }
