@@ -22,16 +22,18 @@ namespace AddressBookLinq
             table.Columns.Add("zip", typeof(int));
             table.Columns.Add("phoneNumber", typeof(string));
             table.Columns.Add("email", typeof(string));
+            table.Columns.Add("addressBookName", typeof(string));
+            table.Columns.Add("type", typeof(string));
 
-            table.Rows.Add("Chetan", "Malagoudar", "Mahantesh Nagar", "Belgaum", "Karnataka", 590016, "8951604950", "bmchetan2028@gmail.com");
-            table.Rows.Add("Pranav", "Mare", "Chinchwad", "Pune", "Maharastra", 568916, "7412589635", "pranavmare@gmail.com");
-            table.Rows.Add("Ibraheem", "Khaleel", "Near Wayand park", "Wayand", "Kerala", 595716, "9632147857", "ibraheemkhaleel@gmail.com");
-            table.Rows.Add("Shiva", "Reddy", "Ameerpet", "Hyderabad", "Telangana", 597516, "963214785", "shivareddy8@gmail.com");
-            table.Rows.Add("Abhilash", "Itnal", "Near Chandini Chowk", "Chandini Chowk", "New Delhi", 594316, "9632145875", "abhilashitnal@gmail.com");
-            table.Rows.Add("Ameysingh", "Rajput", "MG Road", "Surat", "Gujarat", 518016, "8523691475", "ameyrajput@gmail.com");
-            table.Rows.Add("Naveen", "Patil", "Sri Nagar", "Belgaum", "Karnataka", 590016, "8951604950", "naveen@gmail.com");
-            table.Rows.Add("Abhijit", "Thakur", "Chinchwad", "Pune", "Maharastra", 568916, "7412589635", "abhijitthakur@gmail.com");
-            table.Rows.Add("Ibraheem", "Hussain", "Near Wayand park", "Wayand", "Kerala", 595716, "9632147857", "ibraheemhussain@gmail.com");
+            table.Rows.Add("Chetan", "Malagoudar", "Mahantesh Nagar", "Belgaum", "Karnataka", 590016, "8951604950", "bmchetan2028@gmail.com","College","Friend");
+            table.Rows.Add("Pranav", "Mare", "Chinchwad", "Pune", "Maharastra", 568916, "7412589635", "pranavmare@gmail.com","School","Family");
+            table.Rows.Add("Ibraheem", "Khaleel", "Near Wayand park", "Wayand", "Kerala", 595716, "9632147857", "ibraheemkhaleel@gmail.com", "College", "Family");
+            table.Rows.Add("Shiva", "Reddy", "Ameerpet", "Hyderabad", "Telangana", 597516, "963214785", "shivareddy8@gmail.com", "School", "Friend");
+            table.Rows.Add("Abhilash", "Itnal", "Near Chandini Chowk", "Chandini Chowk", "New Delhi", 594316, "9632145875", "abhilashitnal@gmail.com", "College", "Family");
+            table.Rows.Add("Ameysingh", "Rajput", "MG Road", "Surat", "Gujarat", 518016, "8523691475", "ameyrajput@gmail.com", "School", "Family");
+            table.Rows.Add("Naveen", "Patil", "Sri Nagar", "Belgaum", "Karnataka", 590016, "8951604950", "naveen@gmail.com", "School", "Friend");
+            table.Rows.Add("Abhijit", "Thakur", "Chinchwad", "Pune", "Maharastra", 568916, "7412589635", "abhijitthakur@gmail.com", "School");
+            table.Rows.Add("Ibraheem", "Hussain", "Near Wayand park", "Wayand", "Kerala", 595716, "9632147857", "ibraheemhussain@gmail.com", "College", "Friend");
 
         }
 
@@ -70,7 +72,9 @@ namespace AddressBookLinq
                     "  State : " + contact.Field<string>("state")+
                     "  Zip : " + contact.Field<int>("zip")+
                     "  Phone Number : " + contact.Field<string>("phoneNumber")+
-                    "  Email : " + contact.Field<string>("email"));
+                    "  Email : " + contact.Field<string>("email")+
+                    "  AddressBookName : " + contact.Field<string>("addressBookName") + 
+                    "  Address Book Type : " + contact.Field<string>("type"));
             }
         }
 
