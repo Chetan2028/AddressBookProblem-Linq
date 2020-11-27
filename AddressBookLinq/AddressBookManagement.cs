@@ -29,6 +29,10 @@ namespace AddressBookLinq
             table.Rows.Add("Shiva", "Reddy", "Ameerpet", "Hyderabad", "Telangana", 597516, "963214785", "shivareddy8@gmail.com");
             table.Rows.Add("Abhilash", "Itnal", "Near Chandini Chowk", "Chandini Chowk", "New Delhi", 594316, "9632145875", "abhilashitnal@gmail.com");
             table.Rows.Add("Ameysingh", "Rajput", "MG Road", "Surat", "Gujarat", 518016, "8523691475", "ameyrajput@gmail.com");
+            table.Rows.Add("Naveen", "Patil", "Sri Nagar", "Belgaum", "Karnataka", 590016, "8951604950", "naveen@gmail.com");
+            table.Rows.Add("Abhijit", "Thakur", "Chinchwad", "Pune", "Maharastra", 568916, "7412589635", "abhijitthakur@gmail.com");
+            table.Rows.Add("Ibraheem", "Hussain", "Near Wayand park", "Wayand", "Kerala", 595716, "9632147857", "ibraheemhussain@gmail.com");
+
         }
 
         /// <summary>
@@ -88,6 +92,11 @@ namespace AddressBookLinq
             return dataTableupdated;
         }
 
+        /// <summary>
+        /// UC6
+        /// Retrievings the contact details by state or city.
+        /// </summary>
+        /// <param name="dataTable">The data table.</param>
         public void RetrievingContactDetailsByStateOrCity(DataTable dataTable)
         {
             //lambda syntax for getting data for particular city
@@ -105,6 +114,32 @@ namespace AddressBookLinq
                 Console.WriteLine("phoneNumber:- " + data.Field<string>("phoneNumber"));
                 Console.WriteLine("eMail:- " + data.Field<string>("email"));
                 Console.WriteLine("***************");
+            }
+        }
+
+        /// <summary>
+        /// UC7
+        /// Gets the state of the count by city and.
+        /// </summary>
+        /// <param name="datatable">The datatable.</param>
+        public void GetCountByCityAndState(DataTable datatable)
+        {
+            //getting count for particular state or city
+            var recordData = datatable.AsEnumerable().Where(r => r.Field<string>("city") == "Hyderabad" && r.Field<string>("state") == "Telangana").Count();
+            //grouping data by city and state
+            var recordedData = from data in datatable.AsEnumerable()
+                               group data by new { city = data.Field<string>("city"), state = data.Field<string>("state") } into g
+                               select new { city = g.Key, count = g.Count() };
+            //displaying data for particular city or state
+            Console.WriteLine(recordData);
+            //displaying total grouped data
+            foreach (var data in recordedData.AsEnumerable())
+            {
+                Console.WriteLine("city:- " + data.city.city);
+                Console.WriteLine("state:- " + data.city.state);
+                Console.WriteLine("Total Contacts:- " + data.count);
+                Console.WriteLine("*******************");
+
             }
         }
     }
