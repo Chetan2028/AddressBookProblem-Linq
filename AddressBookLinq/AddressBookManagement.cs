@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
+using System.Linq;
 
 namespace AddressBookLinq
 {
@@ -17,7 +18,7 @@ namespace AddressBookLinq
         public void AddDataToDataTable()
         {
             table.Columns.Add("firstName", typeof(string));
-            table.Columns.Add("lasttName", typeof(string));
+            table.Columns.Add("lastName", typeof(string));
             table.Columns.Add("address", typeof(string));
             table.Columns.Add("city", typeof(string));
             table.Columns.Add("state", typeof(string));
@@ -31,6 +32,45 @@ namespace AddressBookLinq
             table.Rows.Add("Shiva", "Reddy", "Ameerpet", "Hyderabad", "Telangana", 597516, "963214785", "shivareddy8@gmail.com");
             table.Rows.Add("Abhilash", "Itnal", "Near Chandini Chowk", "Chandini Chowk", "New Delhi", 594316, "9632145875", "abhilashitnal@gmail.com");
             table.Rows.Add("Ameysingh", "Rajput", "MG Road", "Surat", "Gujarat", 518016, "8523691475", "ameyrajput@gmail.com");
+        }
+
+        /// <summary>
+        /// UC4
+        /// Updates the contact detail.
+        /// </summary>
+        public void UpdateContactDetail()
+        {
+            var recordData = table.AsEnumerable().Where(x => x.Field<string>("firstName").Equals("Abhilash") && x.Field<string>("phoneNumber").Equals("9632145875")).FirstOrDefault();
+            recordData["state"] = "Chennai";
+            Console.WriteLine("***********UpdatedData***************");
+            Console.WriteLine("FirstName:- " + recordData.Field<string>("firstName"));
+            Console.WriteLine("lastName:- " + recordData.Field<string>("lastName"));
+            Console.WriteLine("Address:- " + recordData.Field<string>("address"));
+            Console.WriteLine("City:- " + recordData.Field<string>("city"));
+            Console.WriteLine("State:- " + recordData.Field<string>("state"));
+            Console.WriteLine("zip:- " +recordData.Field<int>("zip"));
+            Console.WriteLine("phoneNumber:- " + recordData.Field<string>("phoneNumber"));
+            Console.WriteLine("eMail:- " + recordData.Field<string>("email"));
+            Console.WriteLine("***************");
+
+        }
+
+        /// <summary>
+        /// Views the contact.
+        /// </summary>
+        public void ViewContact()
+        {
+            foreach (var contact in table.AsEnumerable())
+            {
+                Console.WriteLine("First Name : " + contact.Field<string>("firstName") + 
+                    "  LastName : " + contact.Field<string>("lastName")+
+                    "  Address : " + contact.Field<string>("address")+
+                    "  City : " + contact.Field<string>("city")+
+                    "  State : " + contact.Field<string>("state")+
+                    "  Zip : " + contact.Field<int>("zip")+
+                    "  Phone Number : " + contact.Field<string>("phoneNumber")+
+                    "  Email : " + contact.Field<string>("email"));
+            }
         }
     }
 }
