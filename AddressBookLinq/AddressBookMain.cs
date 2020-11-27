@@ -3,12 +3,13 @@ using System.Data;
 
 namespace AddressBookLinq
 {
-    class AddressBookMain
+    public class AddressBookMain
     {
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Address Book Table");
-
+            AddressBookManagement addressBook = new AddressBookManagement();
+            addressBook.AddDataToDataTable();
         }
     }
 }
