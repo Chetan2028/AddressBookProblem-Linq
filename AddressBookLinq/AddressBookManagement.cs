@@ -121,6 +121,7 @@ namespace AddressBookLinq
             }
         }
 
+
         /// <summary>
         /// UC7
         /// Gets the state of the count by city and.
